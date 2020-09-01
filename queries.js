@@ -48,8 +48,21 @@ const createProfessor = (request, response) => {
   );
 };
 
+//DELETE
+const deleteProfessor = (request, response) => {
+  const id = parseInt(request.params.id);
+
+  pool.query("DELETE FROM professors WHERE id = $1", [id], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).send(`Professor deleted with ID: ${id}`);
+  });
+};
+
 module.exports = {
   getProfessors,
   getProfessorById,
   createProfessor,
+  deleteProfessor,
 };
