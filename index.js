@@ -19,8 +19,7 @@ app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
 
-//ROUTES
-
+//PROFESSOR ROUTES
 app.get("/professors", db.getProfessors);
 app.get("/professors/:id", db.getProfessorById);
 app.post("/professors", db.createProfessor);
