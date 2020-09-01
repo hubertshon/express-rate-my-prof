@@ -24,4 +24,5 @@ app.listen(port, () => {
 app.get("/professors", db.getProfessors);
 app.get("/professors/:id", db.getProfessorById);
 app.post("/professors", db.createProfessor);
+app.delete("/professors/:id", db.deleteProfessor);
 //INDEX
