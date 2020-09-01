@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
+const db = require("./queries");
 
 app.use(bodyParser.json());
 app.use(
@@ -10,6 +11,17 @@ app.use(
   })
 );
 
-var x = 0;
+app.get("/", (request, response) => {
+  response.json({ info: "Node.js, Express, and Postgres API" });
+});
 
-//TRY TO MAKE AN EDIT HERE
+app.listen(port, () => {
+  console.log(`App running on port ${port}.`);
+});
+
+//ROUTES
+
+app.get("/professors", db.getProfessors);
+app.get("/professors/:id", db.getProfessorById);
+app.post("/professors", db.createProfessor);
+//INDEX
