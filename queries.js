@@ -48,6 +48,23 @@ const createProfessor = (request, response) => {
   );
 };
 
+//UPDATE
+const updateProfessor = (request, response) => {
+  const id = parseInt(request.params.id);
+  const { name, title, school, department, subject } = request.body;
+
+  pool.query(
+    "UPDATE professors SET name = $1, title = $2, school = $3, department = $4, subject = $5 WHERE id = $6",
+    [name, title, school, department, subject, id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).send(`Professor modified with ID: ${id}`);
+    }
+  );
+};
+
 //DELETE
 const deleteProfessor = (request, response) => {
   const id = parseInt(request.params.id);
@@ -64,5 +81,6 @@ module.exports = {
   getProfessors,
   getProfessorById,
   createProfessor,
+  updateProfessor,
   deleteProfessor,
 };
