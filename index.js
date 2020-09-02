@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
 const db = require("./queries");
+const db2 = require("./reviewqueries");
 
 app.use(bodyParser.json());
 app.use(
@@ -25,3 +26,8 @@ app.get("/professors/:id", db.getProfessorById);
 app.post("/professors", db.createProfessor);
 app.put("/professors/:id", db.updateProfessor);
 app.delete("/professors/:id", db.deleteProfessor);
+
+//Review Routes
+app.get("/reviews", db2.getReviews);
+app.get("/reviews/:id", db2.getReviewById);
+app.post("/reviews", db2.createReview);
