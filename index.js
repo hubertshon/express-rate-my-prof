@@ -27,7 +27,10 @@ app.post("/professors", db.createProfessor);
 app.put("/professors/:id", db.updateProfessor);
 app.delete("/professors/:id", db.deleteProfessor);
 
-//Review Routes
+//REVIEW ROUTES
+
+app.put("/reviews/:id", db2.updateReview);
+app.delete("/reviews/:id", db2.deleteReview);
 app.get("/reviews", db2.getReviews);
 app.get("/reviews/:id", db2.getReviewById);
 app.post("/reviews", db2.createReview);
