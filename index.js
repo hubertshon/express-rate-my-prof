@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
 const db = require("./queries");
-const rdb = require("./reviewqueries");
+const db2 = require("./reviewqueries");
 
 app.use(bodyParser.json());
 app.use(
@@ -29,5 +29,8 @@ app.delete("/professors/:id", db.deleteProfessor);
 
 //REVIEW ROUTES
 
-app.put("/reviews/:id", rdb.updateReview);
-app.delete("/reviews/:id", rdb.deleteReview);
+app.put("/reviews/:id", db2.updateReview);
+app.delete("/reviews/:id", db2.deleteReview);
+app.get("/reviews", db2.getReviews);
+app.get("/reviews/:id", db2.getReviewById);
+app.post("/reviews", db2.createReview);
