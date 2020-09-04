@@ -21,11 +21,20 @@ const getReviews = (request, response) => {
 //SHOW
 const getReviewById = (request, response) => {
   const id = parseInt(request.params.id);
-  pool.query("SELECT * FROM reviews WHERE id = $1", [id], (error, results) => {
+  pool.query("SELECT * FROM reviews WHERE id = $1", [id], function (error, result1) {
+    pool.query("SELECT name FROM professors, reviews WHERE professors.id = reviews.professor_id LIMIT 1", function (error, result2) {
+      var ret = {
+        reviews: result1.rows,
+        professors: result2.rows
+      };
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(ret);
+    });
     if (error) {
       throw error;
     }
-    response.status(200).json(results.rows);
   });
 };
 
