@@ -20,16 +20,21 @@ const getProfessors = (request, response) => {
 //SHOW
 const getProfessorById = (request, response) => {
   const id = parseInt(request.params.id);
-  pool.query(
-    "SELECT * FROM professors WHERE id = $1",
-    [id],
-    (error, results) => {
+  pool.query("SELECT * FROM professors WHERE id = $1", [id], function (error, result1) {
+    pool.query("SELECT * FROM reviews WHERE professor_id = $1", [id], function (error, result2) {
+      var ret = {
+        professors: result1.rows,
+        reviews: result2.rows,
+      };
       if (error) {
         throw error;
       }
-      response.status(200).json(results.rows);
+      response.status(200).json(ret);
+    });
+    if (error) {
+      throw error;
     }
-  );
+  });
 };
 
 //CREATE
