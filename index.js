@@ -4,6 +4,9 @@ const app = express();
 const port = 3000;
 const db = require("./queries");
 const db2 = require("./reviewqueries");
+var cors = require('cors');
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(
