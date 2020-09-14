@@ -39,11 +39,11 @@ const getProfessorById = (request, response) => {
 
 //CREATE
 const createProfessor = (request, response) => {
-  const { name, title, school, department, subject } = request.body;
+  const { name, title, school, department, subject, url } = request.body;
 
   pool.query(
-    "INSERT INTO professors (name, title, school, department, subject) VALUES ($1, $2, $3, $4, $5)",
-    [name, title, school, department, subject],
+    "INSERT INTO professors (name, title, school, department, subject, url) VALUES ($1, $2, $3, $4, $5, $6)",
+    [name, title, school, department, subject, url],
     (error, results) => {
       if (error) {
         throw error;
@@ -56,11 +56,11 @@ const createProfessor = (request, response) => {
 //UPDATE
 const updateProfessor = (request, response) => {
   const id = parseInt(request.params.id);
-  const { name, title, school, department, subject } = request.body;
+  const { name, title, school, department, subject, url } = request.body;
 
   pool.query(
-    "UPDATE professors SET name = $1, title = $2, school = $3, department = $4, subject = $5 WHERE id = $6",
-    [name, title, school, department, subject, id],
+    "UPDATE professors SET name = $1, title = $2, school = $3, department = $4, subject = $5, url = $6 WHERE id = $7",
+    [name, title, school, department, subject, url, id],
     (error, results) => {
       if (error) {
         throw error;
