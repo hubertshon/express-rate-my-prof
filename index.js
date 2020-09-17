@@ -33,6 +33,7 @@ app.delete("/professors/:id", db.deleteProfessor);
 //REVIEW ROUTES
 
 app.put("/reviews/:id", db2.updateReview);
+app.put("/reviews/:id/like", db2.updateReviewLike);
 app.delete("/reviews/:id", db2.deleteReview);
 app.get("/reviews", db2.getReviews);
 app.get("/reviews/:id", db2.getReviewById);
