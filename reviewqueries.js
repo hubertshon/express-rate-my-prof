@@ -83,6 +83,17 @@ const deleteReview = (request, response) => {
   });
 };
 
+const updateReviewLike = (request, response) => {
+  const id = parseInt(request.params.id);
+
+  pool.query("UPDATE reviews SET likes = likes + 1 WHERE id = $1 RETURNING likes;", [id], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json(results.rows);
+  });
+};
+
 //EXPORT functions to index.js
 
 module.exports = {
@@ -91,4 +102,5 @@ module.exports = {
   createReview,
   updateReview,
   deleteReview,
+  updateReviewLike
 };
