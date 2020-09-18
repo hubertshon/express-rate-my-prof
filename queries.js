@@ -10,6 +10,7 @@ const pool = new Pool({
 //INDEX
 const getProfessors = (request, response) => {
   pool.query("SELECT professors.*, AVG(reviews.score) FROM professors FULL OUTER JOIN reviews ON professors.id = reviews.professor_id GROUP BY professors.id ORDER BY id ASC;", (error, results) => {
+    // pool.query("SELECT * FROM professors ORDER BY id ASC;", (error, results) => {
     if (error) {
       throw error;
     }
