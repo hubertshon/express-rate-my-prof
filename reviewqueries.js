@@ -42,10 +42,10 @@ const getReviewById = (request, response) => {
 const createReview = (request, response) => {
   const { author, text, score, professor_id } = request.body;
   const date = new Date();
+  const likes = 0;
   pool.query(
-    "INSERT INTO reviews (author, date, text, score, professor_id) VALUES ($1, $2, $3, $4, $5)",
-    // eslint-disable-next-line camelcase
-    [author, date, text, score, professor_id],
+    "INSERT INTO reviews (author, date, text, score, likes, professor_id) VALUES ($1, $2, $3, $4, $5, $6)",
+    [author, date, text, score, likes, professor_id],
     (error, results) => {
       if (error) {
         throw error;
