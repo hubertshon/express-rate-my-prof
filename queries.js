@@ -1,13 +1,22 @@
+require(‘dotenv’).config();
+
+
 const Pool = require("pg").Pool;
-const host = 'https://grade-my-prof-backend.herokuapp.com/';
+
 
 const pool = new Pool({
-  user: "admin",
-  host: host,
-  database: "ratemyprofessor",
-  password: "password",
-  port: 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+  // user: "admin",
+  // host: "localhost",
+  // database: "ratemyprofessor",
+  // password: "password",
+  // port: 5432,
 });
+
+pool.connect();
 
 //INDEX
 const getProfessors = (request, response) => {
