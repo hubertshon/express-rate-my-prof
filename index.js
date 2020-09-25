@@ -1,18 +1,20 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 const db = require("./queries");
 const db2 = require("./reviewqueries");
 var cors = require('cors');
 
+
+app.set("port", PORT);
 app.use(cors());
 
 app.use(express.static("public"));
 
-app.listen(port, () => {
-  console.log(`App is listening on port http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`App is listening on port http://localhost:${port}`);
+// });
 
 
 
