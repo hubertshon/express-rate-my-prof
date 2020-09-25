@@ -1,5 +1,5 @@
 const Pool = require("pg").Pool;
-const host = 'postgres://krysiolsordsgk:7c6e5c9b0b21b7b8c17ef01265f51c58adfeb5c2a0ea151ec7862724fbd993f4@ec2-52-207-124-89.compute-1.amazonaws.com:5432/d2fk2g7s8347sd';
+const host = 'https://grade-my-prof-backend.herokuapp.com/';
 
 const pool = new Pool({
   user: "admin",
